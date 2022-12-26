@@ -1,9 +1,13 @@
 import csv
+import os
 
 # Function to read in a csv and return a dictionary with all the data from the csv stored
-def read():
-    csvfile = input("Enter the name of your csv file (i.e. myfile.csv): ")
-    # Read in the grade log as a csv file
+def read(csvfile):
+    path = "/home/hubert/Documents/GradeSchemer/" + csvfile
+    isExist = os.path.exists(path)
+    if isExist == False:
+        print("Invalid file")
+        return False
     with open(csvfile, 'r') as file:
         csvreader = csv.DictReader(file)
 
@@ -36,8 +40,11 @@ def add_grade_points(courses_dict, course):
     return grade_points
 
 # Function to calculate the user's average (so far) in a course
-def current_average(courses_dict):
-    course = input("\nEnter the name of the course of interest: ")
+def current_average(courses_dict, course):
+    if course not in courses_dict.keys():
+        print("Invalid course\n")
+        return False
+
     assessments = courses_dict.get(course)
 
     grade_weightings = add_weightings(courses_dict, course)
@@ -48,15 +55,17 @@ def current_average(courses_dict):
     return avg
         
 # Function to calculate a required grade on a course's final exam for the user to achieve their overall grade goal
-def final_exam_goal(courses_dict):
-    course = input("\nEnter your course of interest: ")
+def final_exam_goal(courses_dict, course):
+    if course not in courses_dict.keys():
+        print("Invalid course\n")
+        return False
     # Checking if the course is valid for this command
     if add_weightings(courses_dict, course) == 100:
         print("You have already completed the final exam in this course")
-        return 
+        return False
 
-    goal = float(input("Enter your overall grade goal: "))
-    exam_weight = float(input("Enter the weighting of your final exam: "))
+    goal = float(input("Enter your overall grade goal as digits: "))
+    exam_weight = float(input("Enter the weighting of your final exam as digits: "))
 
     weighting = add_weightings(courses_dict, course)
 
