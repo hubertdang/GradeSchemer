@@ -66,7 +66,54 @@ def final_exam_goal(courses_dict, course, goal, exam_weight, temp_dict):
     print("\nYou need a " + str(required_grade) + " on the final exam to get a " + str(goal) + " in the course\n")
     return required_grade    
 
+# Function to convert a current grade to a letter grade
+def get_letter_grade(courses_dict, course):
+    avg = current_average(courses_dict, course)
+    if avg >= 90:
+        print("Your equivalent letter grade is A+")
+        return "A+"
+    elif avg >= 85:
+        print("Your equivalent letter grade is A")
+        return "A"
+    elif avg >= 80:
+        print("Your equivalent letter grade is A-")
+        return "A-"
+    elif avg >= 77:
+        print("Your equivalent letter grade is B+")
+        return "B+"
+    elif avg >= 73:
+        print("Your equivalent letter grade is B")
+        return "B"
+    elif avg >= 70:
+        print("Your equivalent letter grade is B-")
+        return "B-"
+    elif avg >= 67:
+        print("Your equivalent letter grade is C+")
+        return "C+"
+    elif avg >= 63:
+        print("Your equivalent letter grade is C")
+        return "C"
+    elif avg >= 60:
+        print("Your equivalent letter grade is C-")
+        return "C-"
+    elif avg >= 57:
+        print("Your equivalent letter grade is D+")
+        return "D+"
+    elif avg >= 53:
+        print("Your equivalent letter grade is D")
+        return "D"
+    elif avg >= 50:
+        print("Your equivalent letter grade is D-")
+        return "D-"
+    elif avg >= 0:
+        print("Your equivalent letter grade is F")
+        return "F"
+    else:
+        print("Invalid grade")
+        return False
 
+
+# Function to calculate average gpa 
 
 
 
