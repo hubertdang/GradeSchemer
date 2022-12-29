@@ -55,40 +55,23 @@ def current_average(courses_dict, course):
     return avg
         
 # Function to calculate a required grade on a course's final exam for the user to achieve their overall grade goal
-def final_exam_goal(courses_dict, course):
-    if course not in courses_dict.keys():
-        print("Invalid course\n")
+def final_exam_goal(courses_dict, course, goal, exam_weight, temp_dict):
+    total_gp = add_grade_points(temp_dict, course)
+    # Goal is too low
+    if (goal < total_gp) or (goal > 100):
         return False
-    # Checking if the course is valid for this command
-    if add_weightings(courses_dict, course) == 100:
-        print("You have already completed the final exam in this course")
+    if (exam_weight + add_weightings(courses_dict, course)) > 100:
         return False
-
-    goal = float(input("Enter your overall grade goal as digits: "))
-    exam_weight = float(input("Enter the weighting of your final exam as digits: "))
-
-    weighting = add_weightings(courses_dict, course)
-
-    temp_dict = courses_dict
-
-    total_weight = weighting + exam_weight
-    # Fill in empty data on assessments
-    while total_weight < 100:
-        print("\nThere are some missing assessments.\n")
-        print("Your total weighting is currently " + str(total_weight) + "/100, the remaining weight is " + str(100 - total_weight) + "\n")
-        name = input("Enter an ungraded/incomplete assessment name: ")
-        weight = float(input("Enter the assessment's weighting: "))
-        grade = float(input("Enter a estimated grade for the assessment: "))
-        temp_dict[course] += [[name, weight, grade]]
-        total_weight += weight
-
-        if total_weight > 100:
-            total_weight -= weight
-            print("\nThe weighting of that assessment is invalid (too high)\n")
-
-    required_grade = ((goal - add_grade_points(temp_dict, course)) / exam_weight) * 100
+    required_grade = ((goal - total_gp) / exam_weight) * 100
     print("\nYou need a " + str(required_grade) + " on the final exam to get a " + str(goal) + " in the course\n")
     return required_grade    
+
+
+
+
+
+
+
 
         
 
