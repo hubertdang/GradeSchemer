@@ -18,7 +18,7 @@ while quit == False:
                 cmdloop = True
                 while cmdloop == True:
                     # Prompting the user to enter a command
-                    usr_cmd = input("\nSelect a command: \nA - Calculate current average in a course\nB - Calculate a final exam grade goal\nQ - Quit\n")
+                    usr_cmd = input("\nSelect a command: \nA - Calculate current average in a course\nB - Calculate a final exam grade goal\nC - Convert your current average in a course to a letter grade\nQ - Quit\n")
                     # Command Q
                     if usr_cmd == 'Q':
                         quit = True
@@ -66,8 +66,9 @@ while quit == False:
                                 total_weight -= weight
                                 print("\nThe weighting of that assessment is invalid (too high)\n")
                         commands_GradeSchemer.final_exam_goal(courses_dict, course, goal, exam_weight, temp_dict)
-
-                            
+                    elif usr_cmd == 'C': 
+                        course = input("\nEnter the name of the course of interest: ")
+                        commands_GradeSchemer.get_letter_grade(courses_dict, course)
                             
 
                 
