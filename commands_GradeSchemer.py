@@ -69,7 +69,10 @@ def final_exam_goal(courses_dict, course, goal, exam_weight, temp_dict):
 # Function to convert a current grade to a letter grade
 def get_letter_grade(courses_dict, course):
     avg = current_average(courses_dict, course)
-    if avg >= 90:
+    if avg == False:
+        print("Invalid course")
+        return False
+    elif avg >= 90:
         print("Your equivalent letter grade is A+")
         return "A+"
     elif avg >= 85:
