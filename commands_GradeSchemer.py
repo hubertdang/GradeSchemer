@@ -70,7 +70,6 @@ def final_exam_goal(courses_dict, course, goal, exam_weight, temp_dict):
 def get_letter_grade(courses_dict, course):
     avg = current_average(courses_dict, course)
     if avg == False:
-        print("Invalid course")
         return False
     elif avg >= 90:
         print("Your equivalent letter grade is A+")
@@ -116,7 +115,6 @@ def get_letter_grade(courses_dict, course):
         return False
 
 
-# Function to calculate average gpa 
 
 
 
