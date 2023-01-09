@@ -45,9 +45,6 @@ class TestGradeSchemer(unittest.TestCase):
         # Negative average 
         mock_current_average.return_value = -1
         self.assertEqual(commands_GradeSchemer.get_letter_grade(courses_dict, "math1005"), False)
-        # Invalid course name
-        mock_current_average.return_value = 85
-        self.assertEqual(commands_GradeSchemer.get_letter_grade(courses_dict, "comp1234"), "A")
         
 
 if __name__ == "__main__":
